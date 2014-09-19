@@ -12,7 +12,7 @@ use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\FOSRestController;
 
 
-class BaseController extends FOSRestController
+class Controller extends FOSRestController
 {
 
     protected $data = array();

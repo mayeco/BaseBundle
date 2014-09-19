@@ -239,7 +239,7 @@ class Controller extends FOSRestController
             $form->handleRequest($request);
         }
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             return true;
         }
 

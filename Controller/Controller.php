@@ -6,11 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Form\Form;
 
-use Doctrine\ORM\Query;
 use Doctrine\Common\Util\Debug;
-
-use Pagerfanta\Pagerfanta;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
 
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\FOSRestController;
@@ -25,15 +21,6 @@ class BaseController extends FOSRestController
     protected $template;
     protected $format;
     protected $view;
-
-    protected function getPaginator(Query $query, $page, $limit)
-    {
-        $paginator = new Pagerfanta(new DoctrineORMAdapter($query));
-        $paginator->setCurrentPage($page, false, true);
-        $paginator->setMaxPerPage($limit);
-
-        return $paginator;
-    }
 
     protected function getDoctrineManager($manager=null)
     {

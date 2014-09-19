@@ -146,7 +146,7 @@ class BaseController extends FOSRestController
     protected function persist($object, $flush=false, $manager=null)
     {
         if(null === $object){
-            $this->error('no null update');
+            $this->error('No Null Update');
         }
 
         $this->getDoctrineManager($manager)->persist($object);
@@ -215,7 +215,7 @@ class BaseController extends FOSRestController
 
     }
 
-    public function AccessDeniedIf($message='Unable to access this page!')
+    public function AccessDeniedIf($condition, $message='Unable to access this page!')
     {
 
         if ($condition)
@@ -225,7 +225,7 @@ class BaseController extends FOSRestController
 
     }
 
-    public function AccessDeniedUnless($message='Unable to access this page!')
+    public function AccessDeniedUnless($condition, $message='Unable to access this page!')
     {
 
         if (!$condition)

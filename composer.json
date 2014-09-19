@@ -1,0 +1,29 @@
+{
+    "name": "mayeco/base-bundle",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "description": "Base bundle for Symfony2",
+    "keywords": ["google api"],
+    "homepage": "https://github.com/mayeco/BaseBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mario Young",
+            "email": "yo@maye.co"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "white-october/pagerfanta-bundle": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "Mayeco\\BaseBundle": "" }
+    },
+    "target-dir": "Mayeco/BaseBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}

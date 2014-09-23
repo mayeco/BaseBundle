@@ -153,6 +153,18 @@ class Controller extends FOSRestController
         $this->persist($object, true, $manager);
     }
 
+    protected function merge($object, $manager=null)
+    {
+        
+        return $this->getDoctrineManager($manager)->merge($object);
+    }
+
+    protected function detach($object, $manager=null)
+    {
+        
+        return $this->getDoctrineManager($manager)->detach($object);
+    }
+
     protected function remove($object, $flush=false,$manager=null)
     {
 

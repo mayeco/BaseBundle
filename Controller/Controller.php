@@ -302,5 +302,11 @@ class Controller extends FOSRestController
 
         return $this->get('session');
     }
-
+    
+    public function addflash($message, $type="notice")
+    {
+        
+        return $this->session()->getFlashBag()->add($type, $message);
+    }
+    
 }

@@ -107,7 +107,7 @@ class Controller extends FOSRestController
         if($this->template){
             $this->view->setTemplate($this->template);
         } else {
-            $this->view->setTemplate($this->getDefaultTemplate());
+            throw new \InvalidArgumentException('No template');
         }
 
         return $this->view;
@@ -256,23 +256,6 @@ class Controller extends FOSRestController
         }
 
         return false;
-    }
-
-    public function getDefaultTemplate(Request $request = null)
-    {
-        if (!$this->has('sensio_framework_extra.view.guesser')) {
-            $this->error('The sensio_framework_extra is not registered in your application.');
-        }
-
-        if(null === $request){
-            $request = $this->getRequest();
-        }
-
-        $matches = array();
-        $controller = $request->attributes->get('_controller');
-        preg_match('/(.*)\\\Bundle\\\(.*)\\\Controller\\\(.*)Controller::(.*)Action/', $controller, $matches);
-
-        return $this->get('sensio_framework_extra.view.guesser')->guessTemplateName(array($this, $matches[4].'Action'), $request);
     }
 
     public function setParameters(){

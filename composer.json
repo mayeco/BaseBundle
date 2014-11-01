@@ -14,8 +14,8 @@
     ],
     "require": {
         "php": ">=5.3.2",
-        "jms/serializer-bundle": "0.13.*@dev",
-        "friendsofsymfony/rest-bundle": "1.5.*@dev"
+        "jms/serializer-bundle": "0.12.*",
+        "friendsofsymfony/rest-bundle": "1.4.1"
     },
     "autoload": {
         "psr-0": { "Mayeco\\BaseBundle": "" }

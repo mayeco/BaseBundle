@@ -25,11 +25,11 @@ class Controller extends FOSRestController
     protected $format;
     protected $view;
 
-    protected function getPaginator(Query $query, $page, $limit)
+    protected function getPaginator(Query $query, $page=1, $limit=10)
     {
         $paginator = new Pagerfanta(new DoctrineORMAdapter($query));
-        $paginator->setCurrentPage($page, false, true);
         $paginator->setMaxPerPage($limit);
+        $paginator->setCurrentPage($page);
 
         return $paginator;
     }

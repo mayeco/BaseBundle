@@ -28,7 +28,7 @@ class Controller extends FOSRestController
     protected function getPaginator(Query $query, $page, $limit)
     {
         $paginator = new Pagerfanta(new DoctrineORMAdapter($query));
-        $paginator->setCurrentPage($page, false, true);
+        $paginator->setCurrentPage($page);
         $paginator->setMaxPerPage($limit);
 
         return $paginator;

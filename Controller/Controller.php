@@ -290,6 +290,24 @@ class Controller extends FOSRestController
 
         return $this->get('session');
     }
+
+    public function mailer()
+    {
+        if (!$this->has('mailer')) {
+            $this->error('The mailer is not registered in your application.');
+        }
+
+        return $this->get('mailer');
+    }
+
+    public function security()
+    {
+        if (!$this->has('security.context')) {
+            $this->error('The security.context is not registered in your application.');
+        }
+
+        return $this->get('security.context');
+    }
     
     public function addflash($message, $type="notice")
     {

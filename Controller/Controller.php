@@ -39,10 +39,10 @@ class Controller extends FOSRestController
         return $this->getDoctrine()->getManager($manager);
     }
 
-    protected function getRepository($class, $manager=null)
+    protected function getRepository($object, $manager=null)
     {
 
-        return $this->getDoctrineManager($manager)->getRepository($class);
+        return $this->getDoctrineManager()->getRepository(is_object($object) ? get_class($object) : $object);
     }
 
     protected function getDispatcher()

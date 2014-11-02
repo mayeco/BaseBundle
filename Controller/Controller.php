@@ -252,17 +252,11 @@ class Controller extends FOSRestController
 
     }
 
-    public function handleForm(Form $form, Request $request = null)
+    public function handleForm(Form $form, Request $request)
     {
-        if(null === $request){
-            $request = $this->getRequest();
-        }
 
-        if(!$form->isSubmitted()) {
-            $form->handleRequest($request);
-        }
-
-        if ($form->isValid()) {
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
             return true;
         }
 

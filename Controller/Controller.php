@@ -254,13 +254,10 @@ class Controller extends FOSRestController
 
     public function handleForm(Form $form, Request $request)
     {
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             return true;
         }
-
-        return false;
     }
 
     public function setParameters(){

@@ -115,10 +115,8 @@ class Controller extends FOSRestController
             $this->view->setFormat($this->format);
         }
 
-        if($this->template){
+        if("" != $this->template){
             $this->view->setTemplate($this->template);
-        } else {
-            throw new \InvalidArgumentException('No template');
         }
 
         return $this->view;

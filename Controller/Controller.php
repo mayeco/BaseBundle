@@ -305,6 +305,25 @@ class Controller extends FOSRestController
 
         return $this->get('security.context');
     }
+
+    public function memcache()
+    {
+        if (!$this->has('memcache.default')) {
+            $this->error('The memcache.default is not registered in your application.');
+        }
+
+        return $this->get('memcache.default');
+    }
+
+    public function getmemcache($key)
+    {
+        return $this->memcache()->get($key);
+    }
+
+    public function setmemcache($key, $data, $time = 86400)
+    {
+        return $this->memcache()->set($key, $datacache, $time);
+    }
     
     public function addflash($message, $type="notice")
     {

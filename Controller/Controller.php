@@ -72,12 +72,12 @@ class Controller extends FOSRestController
         unset($this->data[$offset]);
     }
 
-    public function hasData($offset)
+    protected function hasData($offset)
     {
         return isset($this->data[$offset]);
     }
 
-    public function getData()
+    protected function getData()
     {
         return $this->data;
     }
@@ -200,7 +200,7 @@ class Controller extends FOSRestController
 
     }
 
-    public function NotFoundUnless($condition, $message = 'Error 404')
+    protected function NotFoundUnless($condition, $message = 'Error 404')
     {
         if (!$condition)
         {
@@ -208,7 +208,7 @@ class Controller extends FOSRestController
         }
     }
 
-    public function NotFoundIf($condition, $message = 'Error 404')
+    protected function NotFoundIf($condition, $message = 'Error 404')
     {
         if ($condition)
         {
@@ -216,14 +216,14 @@ class Controller extends FOSRestController
         }
     }
 
-    public function AccessDenied($message='Unable to access this page!')
+    protected function AccessDenied($message='Unable to access this page!')
     {
 
         throw $this->createAccessDeniedException($message);
 
     }
 
-    public function AccessDeniedIf($condition, $message='Unable to access this page!')
+    protected function AccessDeniedIf($condition, $message='Unable to access this page!')
     {
 
         if ($condition)
@@ -233,7 +233,7 @@ class Controller extends FOSRestController
 
     }
 
-    public function AccessDeniedUnless($condition, $message='Unable to access this page!')
+    protected function AccessDeniedUnless($condition, $message='Unable to access this page!')
     {
 
         if (!$condition)
@@ -243,14 +243,14 @@ class Controller extends FOSRestController
 
     }
 
-    public function error($message='error in your application!')
+    protected function error($message='error in your application!')
     {
 
         throw new \LogicException($message);
 
     }
 
-    public function handleForm(Form $form, Request $request)
+    protected function handleForm(Form $form, Request $request)
     {
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -258,7 +258,7 @@ class Controller extends FOSRestController
         }
     }
 
-    public function setParameters(){
+    protected function setParameters(){
 
         $attributes = $this->getRequest()->attributes->all();
         if($attributes['paramFetcher']) {
@@ -268,7 +268,7 @@ class Controller extends FOSRestController
 
     }
 
-    public function getRootDir()
+    protected function getRootDir()
     {
         if (!$this->has('kernel')) {
             $this->error('The kernel is not registered in your application.');
@@ -277,7 +277,7 @@ class Controller extends FOSRestController
         return $this->get('kernel')->getRootDir();
     }
 
-    public function session()
+    protected function session()
     {
         if (!$this->has('session')) {
             $this->error('The session is not registered in your application.');
@@ -286,7 +286,7 @@ class Controller extends FOSRestController
         return $this->get('session');
     }
 
-    public function mailer()
+    protected function mailer()
     {
         if (!$this->has('mailer')) {
             $this->error('The mailer is not registered in your application.');
@@ -295,7 +295,7 @@ class Controller extends FOSRestController
         return $this->get('mailer');
     }
 
-    public function security()
+    protected function security()
     {
         if (!$this->has('security.context')) {
             $this->error('The security.context is not registered in your application.');
@@ -304,7 +304,7 @@ class Controller extends FOSRestController
         return $this->get('security.context');
     }
 
-    public function memcache()
+    protected function memcache()
     {
         if (!$this->has('memcache.default')) {
             $this->error('The memcache.default is not registered in your application.');
@@ -313,17 +313,17 @@ class Controller extends FOSRestController
         return $this->get('memcache.default');
     }
 
-    public function getmemcache($key)
+    protected function getmemcache($key)
     {
         return $this->memcache()->get($key);
     }
 
-    public function setmemcache($key, $data, $time = 86400)
+    protected function setmemcache($key, $data, $time = 86400)
     {
         return $this->memcache()->set($key, $datacache, $time);
     }
     
-    public function addflash($message, $type="notice")
+    protected function addflash($message, $type="notice")
     {
         
         return $this->session()->getFlashBag()->add($type, $message);

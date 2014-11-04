@@ -15,7 +15,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 
-class Controller extends FOSRestController
+abstract class Controller extends FOSRestController
 {
 
     protected $data = array();

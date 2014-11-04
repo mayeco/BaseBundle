@@ -3,7 +3,7 @@
     "license": "MIT",
     "type": "symfony-bundle",
     "description": "Base bundle for Symfony2",
-    "keywords": ["google api"],
+    "keywords": ["base"],
     "homepage": "https://github.com/mayeco/BaseBundle",
     "license": "MIT",
     "authors": [

@@ -54,6 +54,32 @@ abstract class Controller extends FOSRestController
         return $this->get('event_dispatcher');
     }
 
+    /**
+     * Create a form from an array.
+     *
+     * @param array $formArray A custom array of fields do be shown in the form
+     * @return Form
+     */
+    private function createFormArray($formArray)
+    {
+        $values = array();
+        foreach($formArray as $value) {
+            if(isset($value["default"])) {
+                $values[$value["name"]] = $value["default"];
+            }
+        }
+        $formBuilder = $this->createFormBuilder($values);
+        foreach($formArray as $field) {
+            $defaultoptions = array();
+            if(isset($field['options'])) {
+                $defaultoptions = $field['options'];
+            }
+            $formBuilder->add($field['name'], $field['type'], $defaultoptions);
+        }
+
+        return $formBuilder->getForm();
+    }
+    
     protected function addForm(Form $form, $name='form')
     {
         $this->addData($form->createView(), $name);

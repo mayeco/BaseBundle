@@ -60,7 +60,7 @@ abstract class Controller extends FOSRestController
      * @param array $formArray A custom array of fields do be shown in the form
      * @return Form
      */
-    private function createFormArray($formArray)
+    protected function createFormArray($formArray)
     {
         $values = array();
         foreach($formArray as $value) {

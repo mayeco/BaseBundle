@@ -322,10 +322,6 @@ abstract class Controller extends FOSRestController
     
     protected function getRootDir()
     {
-        if (!$this->has('kernel')) {
-            $this->error('The kernel is not registered in your application.');
-        }
-
         return $this->kernel()->getRootDir();
     }
 

@@ -303,7 +303,7 @@ abstract class Controller extends FOSRestController
 
             $path = $this->kernel()->locateResource($name, $dir, $first);
             
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
 
             return;
         }

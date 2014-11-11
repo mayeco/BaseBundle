@@ -1,6 +1,6 @@
 <?php
 
-namespace Mayeco\BaseBundle\Controller;
+namespace Mayeco\BaseBundle;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\EventDispatcher\Event;

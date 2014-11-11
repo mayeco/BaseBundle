@@ -11,12 +11,6 @@ Install the bundle using composer
 
 ## Step 2
 
-Enable the Bundle in your Kernel
-
-    new Mayeco\BaseBundle\BaseBundle()
-
-## Step 3
-
 Extend your controllers
 
     class MyAcmeController extends \Mayeco\BaseBundle\Controller\Controller

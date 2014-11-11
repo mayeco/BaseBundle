@@ -42,7 +42,7 @@ abstract class Controller extends FOSRestController
     protected function getRepository($object, $manager=null)
     {
 
-        return $this->getDoctrineManager()->getRepository(is_object($object) ? get_class($object) : $object);
+        return $this->getDoctrineManager($manager)->getRepository(is_object($object) ? get_class($object) : $object);
     }
 
     protected function getDispatcher()

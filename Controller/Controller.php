@@ -294,13 +294,40 @@ abstract class Controller extends FOSRestController
 
     }
 
+    protected function locateResource($name, $dir = null, $first = true)
+    {
+        
+        $path = null;
+        
+        try {
+
+            $path = $this->kernel()->locateResource($name, $dir, $first);
+            
+        } catch (Exception $e) {
+
+            return;
+        }
+
+        return $path;
+
+    }
+
+    protected function kernel()
+    {
+        if (!$this->has('kernel')) {
+            $this->error('The kernel is not registered in your application.');
+        }
+
+        return $this->get('kernel');
+    }
+    
     protected function getRootDir()
     {
         if (!$this->has('kernel')) {
             $this->error('The kernel is not registered in your application.');
         }
 
-        return $this->get('kernel')->getRootDir();
+        return $this->kernel()->getRootDir();
     }
 
     protected function session()

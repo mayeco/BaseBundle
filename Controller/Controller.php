@@ -294,22 +294,21 @@ abstract class Controller extends FOSRestController
 
     }
 
-    protected function locateResource($name, $dir = null, $first = true)
+    protected function getFilename($name, $dir = null, $first = true)
     {
         
         $path = null;
         
         try {
-
+            
             $path = $this->kernel()->locateResource($name, $dir, $first);
             
         } catch (\Exception $e) {
-
+            
             return;
         }
 
         return $path;
-
     }
 
     protected function kernel()

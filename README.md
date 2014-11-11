@@ -13,4 +13,4 @@ Install the bundle using composer
 
 Extend your controllers
 
-    class MyAcmeController extends \Mayeco\BaseBundle\Controller\Controller
+    class MyAcmeController extends \Mayeco\BaseBundle\Controller

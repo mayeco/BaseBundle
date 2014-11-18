@@ -334,6 +334,16 @@ abstract class Controller extends FOSRestController
         return $this->get('session');
     }
 
+    protected function getsession($key)
+    {
+        return $this->session()->get($key);
+    }
+
+    protected function setsession($key, $data)
+    {
+        return $this->session()->set($key, $datacache);
+    }
+
     protected function mailer()
     {
         if (!$this->has('mailer')) {

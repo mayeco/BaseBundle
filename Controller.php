@@ -35,17 +35,17 @@ abstract class Controller extends FOSRestController
     /**
      * @var string
      */
-    protected $template;
+    protected $template = null;
     
     /**
      * @var string
      */
-    protected $format;
+    protected $format = null;
     
     /**
      * @var
      */
-    protected $view;
+    protected $view = null;
 
     /**
      * @param Query $query
@@ -53,7 +53,7 @@ abstract class Controller extends FOSRestController
      * @param int $limit
      * @return Pagerfanta
      */
-    protected function getPaginator(Query $query, $page=1, $limit=10)
+    protected function getPaginator(Query $query, $page = 1, $limit = 10)
     {
         $paginator = new Pagerfanta(new DoctrineORMAdapter($query));
         $paginator->setMaxPerPage($limit);
@@ -66,7 +66,7 @@ abstract class Controller extends FOSRestController
      * @param null $manager
      * @return mixed
      */
-    protected function getDoctrineManager($manager=null)
+    protected function getDoctrineManager($manager = null)
     {
         return $this->getDoctrine()->getManager($manager);
     }
@@ -76,7 +76,7 @@ abstract class Controller extends FOSRestController
      * @param null $manager
      * @return mixed
      */
-    protected function getRepository($object, $manager=null)
+    protected function getRepository($object, $manager = null)
     {
         return $this->getDoctrineManager($manager)->getRepository(is_object($object) ? get_class($object) : $object);
     }
@@ -102,15 +102,15 @@ abstract class Controller extends FOSRestController
     protected function createFormArray($formArray)
     {
         $values = array();
-        foreach($formArray as $value) {
-            if(isset($value["default"])) {
+        foreach ($formArray as $value) {
+            if (isset($value["default"])) {
                 $values[$value["name"]] = $value["default"];
             }
         }
         $formBuilder = $this->createFormBuilder($values);
-        foreach($formArray as $field) {
+        foreach ($formArray as $field) {
             $defaultoptions = array();
-            if(isset($field['options'])) {
+            if (isset($field['options'])) {
                 $defaultoptions = $field['options'];
             }
             $formBuilder->add($field['name'], $field['type'], $defaultoptions);
@@ -123,7 +123,7 @@ abstract class Controller extends FOSRestController
      * @param Form $form
      * @param string $name
      */
-    protected function addForm(Form $form, $name='form')
+    protected function addForm(Form $form, $name = 'form')
     {
         $this->addData($form->createView(), $name);
     }
@@ -132,9 +132,9 @@ abstract class Controller extends FOSRestController
      * @param $data
      * @param null $key
      */
-    protected function addData($data, $key=null)
+    protected function addData($data, $key = null)
     {
-        if($key)
+        if ($key)
             $this->data[$key] = $data;
         else
             $this->data[] = $data;
@@ -205,17 +205,17 @@ abstract class Controller extends FOSRestController
      */
     protected function view($data = null, $statusCode = null, array $headers = array())
     {
-        if(null !== $data){
+        if (null !== $data) {
             $this->data[] = $data;
         }
 
         $this->view = parent::view($this->data, $statusCode, $headers);
 
-        if("" != $this->format){
+        if ("" != $this->format) {
             $this->view->setFormat($this->format);
         }
 
-        if("" != $this->template){
+        if ("" != $this->template) {
             $this->view->setTemplate($this->template);
         }
 
@@ -239,10 +239,10 @@ abstract class Controller extends FOSRestController
      * @param $object
      * @param bool $exit
      */
-    protected function debug($object, $exit=true)
+    protected function debug($object, $exit = true)
     {
         Debug::dump($object);
-        if($exit)
+        if ($exit)
             exit();
     }
 
@@ -251,14 +251,14 @@ abstract class Controller extends FOSRestController
      * @param bool $flush
      * @param null $manager
      */
-    protected function persist($object, $flush=false, $manager=null)
+    protected function persist($object, $flush = false, $manager = null)
     {
-        if(null === $object){
+        if (null === $object) {
             $this->error('No Null Update');
         }
 
         $this->getDoctrineManager($manager)->persist($object);
-        if($flush){
+        if ($flush) {
             $this->flush($manager);
         }
     }
@@ -266,7 +266,7 @@ abstract class Controller extends FOSRestController
     /**
      * @param null $manager
      */
-    protected function flush($manager=null)
+    protected function flush($manager = null)
     {
         $this->getDoctrineManager($manager)->flush();
     }
@@ -275,7 +275,7 @@ abstract class Controller extends FOSRestController
      * @param $object
      * @param null $manager
      */
-    protected function update($object, $manager=null)
+    protected function update($object, $manager = null)
     {
         $this->persist($object, true, $manager);
     }
@@ -285,7 +285,7 @@ abstract class Controller extends FOSRestController
      * @param null $manager
      * @return mixed
      */
-    protected function merge($object, $manager=null)
+    protected function merge($object, $manager = null)
     {
         return $this->getDoctrineManager($manager)->merge($object);
     }
@@ -295,7 +295,7 @@ abstract class Controller extends FOSRestController
      * @param null $manager
      * @return mixed
      */
-    protected function detach($object, $manager=null)
+    protected function detach($object, $manager = null)
     {
         return $this->getDoctrineManager($manager)->detach($object);
     }
@@ -305,14 +305,14 @@ abstract class Controller extends FOSRestController
      * @param bool $flush
      * @param null $manager
      */
-    protected function remove($object, $flush=false,$manager=null)
+    protected function remove($object, $flush = false, $manager = null)
     {
-        if(null === $object){
+        if (null === $object) {
             $this->error('no null update');
         }
 
         $this->getDoctrineManager($manager)->remove($object);
-        if($flush){
+        if ($flush) {
             $this->flush($manager);
         }
     }
@@ -330,7 +330,7 @@ abstract class Controller extends FOSRestController
     /**
      * @param string $message
      */
-    protected function NotFound($message="Error 404")
+    protected function NotFound($message = "Error 404")
     {
         throw $this->createNotFoundException($message);
     }
@@ -341,8 +341,7 @@ abstract class Controller extends FOSRestController
      */
     protected function NotFoundUnless($condition, $message = 'Error 404')
     {
-        if (!$condition)
-        {
+        if (!$condition) {
             $this->NotFound($message);
         }
     }
@@ -353,8 +352,7 @@ abstract class Controller extends FOSRestController
      */
     protected function NotFoundIf($condition, $message = 'Error 404')
     {
-        if ($condition)
-        {
+        if ($condition) {
             $this->NotFound($message);
         }
     }
@@ -362,7 +360,7 @@ abstract class Controller extends FOSRestController
     /**
      * @param string $message
      */
-    protected function AccessDenied($message='Unable to access this page!')
+    protected function AccessDenied($message = 'Unable to access this page!')
     {
         throw $this->createAccessDeniedException($message);
     }
@@ -371,10 +369,9 @@ abstract class Controller extends FOSRestController
      * @param $condition
      * @param string $message
      */
-    protected function AccessDeniedIf($condition, $message='Unable to access this page!')
+    protected function AccessDeniedIf($condition, $message = 'Unable to access this page!')
     {
-        if ($condition)
-        {
+        if ($condition) {
             $this->AccessDenied($message);
         }
     }
@@ -383,10 +380,9 @@ abstract class Controller extends FOSRestController
      * @param $condition
      * @param string $message
      */
-    protected function AccessDeniedUnless($condition, $message='Unable to access this page!')
+    protected function AccessDeniedUnless($condition, $message = 'Unable to access this page!')
     {
-        if (!$condition)
-        {
+        if (!$condition) {
             $this->AccessDenied($message);
         }
     }
@@ -394,7 +390,7 @@ abstract class Controller extends FOSRestController
     /**
      * @param string $message
      */
-    protected function error($message='error in your application!')
+    protected function error($message = 'error in your application!')
     {
         throw new \LogicException($message);
     }
@@ -418,11 +414,10 @@ abstract class Controller extends FOSRestController
     protected function setParameters()
     {
         $attributes = $this->getRequest()->attributes->all();
-        if($attributes['paramFetcher']) {
+        if ($attributes['paramFetcher']) {
             $this->parameters = array_merge($attributes, $attributes['paramFetcher']->all());
             unset($this->parameters['paramFetcher']);
         }
-
     }
 
     /**
@@ -434,13 +429,10 @@ abstract class Controller extends FOSRestController
     protected function getFilename($name, $dir = null, $first = true)
     {
         $path = null;
-
         try {
-
             $path = $this->kernel()->locateResource($name, $dir, $first);
-
         } catch (\Exception $e) {
-
+            
             return;
         }
 
@@ -559,7 +551,7 @@ abstract class Controller extends FOSRestController
      * @param string $type
      * @return mixed
      */
-    protected function addflash($message, $type="notice")
+    protected function addflash($message, $type = "notice")
     {
         return $this->session()->getFlashBag()->add($type, $message);
     }

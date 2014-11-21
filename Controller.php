@@ -341,7 +341,7 @@ abstract class Controller extends FOSRestController
 
     protected function setsession($key, $data)
     {
-        return $this->session()->set($key, $datacache);
+        return $this->session()->set($key, $data);
     }
 
     protected function mailer()

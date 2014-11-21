@@ -19,9 +19,8 @@
         "friendsofsymfony/rest-bundle": "~1.4.0"
     },
     "autoload": {
-        "psr-0": { "Mayeco\\BaseBundle": "" }
+        "psr-4": { "Mayeco\\BaseBundle\\": "" }
     },
-    "target-dir": "Mayeco/BaseBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"

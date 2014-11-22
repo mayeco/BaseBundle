@@ -107,6 +107,7 @@ abstract class Controller extends FOSRestController
                 $values[$value["name"]] = $value["default"];
             }
         }
+        
         $formBuilder = $this->createFormBuilder($values);
         foreach ($formArray as $field) {
             $defaultoptions = array();
@@ -134,10 +135,11 @@ abstract class Controller extends FOSRestController
      */
     protected function addData($data, $key = null)
     {
-        if ($key)
+        if ($key) {
             $this->data[$key] = $data;
-        else
+        } else {
             $this->data[] = $data;
+        }
     }
 
     /**
@@ -242,8 +244,9 @@ abstract class Controller extends FOSRestController
     protected function debug($object, $exit = true)
     {
         Debug::dump($object);
-        if ($exit)
+        if ($exit) {
             exit();
+        }
     }
 
     /**
@@ -308,7 +311,7 @@ abstract class Controller extends FOSRestController
     protected function remove($object, $flush = false, $manager = null)
     {
         if (null === $object) {
-            $this->error('no null update');
+            $this->error('No null update');
         }
 
         $this->getDoctrineManager($manager)->remove($object);
@@ -390,7 +393,7 @@ abstract class Controller extends FOSRestController
     /**
      * @param string $message
      */
-    protected function error($message = 'error in your application!')
+    protected function error($message = 'Error in your application!')
     {
         throw new \LogicException($message);
     }
@@ -555,5 +558,5 @@ abstract class Controller extends FOSRestController
     {
         return $this->session()->getFlashBag()->add($type, $message);
     }
-
+    
 }

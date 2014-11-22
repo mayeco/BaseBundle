@@ -1,6 +1,6 @@
 <?php
 
-namespace Mayeco\BaseBundle;
+namespace Mayeco\BaseBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\EventDispatcher\Event;
@@ -19,7 +19,7 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
  * Class Controller
  * @package Mayeco\BaseBundle
  */
-abstract class Controller extends FOSRestController
+abstract class MayecoController extends FOSRestController
 {
 
     /**

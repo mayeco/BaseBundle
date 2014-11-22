@@ -16,7 +16,7 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 
 /**
- * Class Controller
+ * Class MayecoController
  * @package Mayeco\BaseBundle
  */
 abstract class MayecoController extends FOSRestController

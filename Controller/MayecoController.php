@@ -591,7 +591,7 @@ abstract class MayecoController extends FOSRestController
      * @param $body
      * @return \Swift_Attachment
      */
-    protected function message($filename, $content_type, $body)
+    protected function attachment($filename, $content_type, $body)
     {
         return \Swift_Attachment::newInstance()
             ->setFilename($filename)

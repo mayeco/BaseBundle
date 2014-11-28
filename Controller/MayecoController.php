@@ -560,16 +560,6 @@ abstract class MayecoController extends FOSRestController
     }
 
     /**
-     * @param $message
-     * @param string $type
-     * @return mixed
-     */
-    protected function addflash($message, $type = "notice")
-    {
-        return $this->session()->getFlashBag()->add($type, $message);
-    }
-
-    /**
      * @param $to
      * @param $from
      * @param $to_name

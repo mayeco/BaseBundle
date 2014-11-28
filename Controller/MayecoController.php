@@ -560,5 +560,21 @@ abstract class MayecoController extends FOSRestController
     {
         return $this->session()->getFlashBag()->add($type, $message);
     }
-    
+
+    /**
+     * @param $to
+     * @param $from
+     * @param $to_name
+     * @param $from_name
+     * @param $subject
+     * @return \Swift_Message
+     */
+    protected function message($to, $from, $to_name = "", $from_name = "", $subject = "email subject")
+    {
+        return \Swift_Message::newInstance()
+            ->setTo($to, $to_name)
+            ->setFrom($from, $from_name)
+            ->setSubject($subject);
+    }
+
 }

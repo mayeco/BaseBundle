@@ -459,6 +459,14 @@ abstract class MayecoController extends FOSRestController
     /**
      * @return mixed
      */
+    protected function getWebBundlesDir()
+    {
+        return $this->getRootDir() . '/../web/bundles';
+    }
+
+    /**
+     * @return mixed
+     */
     protected function getRootDir()
     {
         return $this->kernel()->getRootDir();
@@ -575,6 +583,20 @@ abstract class MayecoController extends FOSRestController
             ->setTo($to, $to_name)
             ->setFrom($from, $from_name)
             ->setSubject($subject);
+    }
+
+    /**
+     * @param $filename
+     * @param $content_type
+     * @param $body
+     * @return \Swift_Attachment
+     */
+    protected function message($filename, $content_type, $body)
+    {
+        return \Swift_Attachment::newInstance()
+            ->setFilename($filename)
+            ->setContentType($content_type)
+            ->setBody($body);
     }
 
 }

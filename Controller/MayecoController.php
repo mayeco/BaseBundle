@@ -94,6 +94,18 @@ abstract class MayecoController extends FOSRestController
     }
 
     /**
+     * @return mixed
+     */
+    protected function getAsyncDispatcher()
+    {
+        if (!$this->has('bbit_async_dispatcher.dispatcher')) {
+            $this->error('The bbit_async_dispatcher.dispatcher is not registered in your application.');
+        }
+
+        return $this->get('bbit_async_dispatcher.dispatcher');
+    }
+
+    /**
      * Create a form from an array.
      *
      * @param array $formArray
@@ -328,6 +340,16 @@ abstract class MayecoController extends FOSRestController
     protected function dispatch($eventName, Event $event = null)
     {
         return $this->getDispatcher()->dispatch($eventName, $event);
+    }
+
+    /**
+     * @param $eventName
+     * @param Event $event
+     * @return mixed
+     */
+    protected function dispatchAsync($eventName, Event $event = null)
+    {
+        return $this->getAsyncDispatcher()->addAsyncEvent($eventName, $event);
     }
 
     /**

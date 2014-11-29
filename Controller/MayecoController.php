@@ -244,11 +244,11 @@ abstract class MayecoController extends FOSRestController
      */
     protected function debug($object, $exit = true)
     {
-        $dump = Debug::dump($object, 2, true, false);
-        if ($exit) {
-            return new Response($dump);
-        }
+        echo Debug::dump($object, 4, true, false);
         echo $dump;
+        if ($exit) {
+            die();
+        }
     }
 
     /**

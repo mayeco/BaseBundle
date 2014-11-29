@@ -412,18 +412,6 @@ abstract class MayecoController extends FOSRestController
     }
 
     /**
-     *
-     */
-    protected function setParameters()
-    {
-        $attributes = $this->getRequest()->attributes->all();
-        if ($attributes['paramFetcher']) {
-            $this->parameters = array_merge($attributes, $attributes['paramFetcher']->all());
-            unset($this->parameters['paramFetcher']);
-        }
-    }
-
-    /**
      * @param $name
      * @param null $dir
      * @param bool $first

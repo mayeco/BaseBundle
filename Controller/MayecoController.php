@@ -3,7 +3,6 @@
 namespace Mayeco\BaseBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Form\Form;
 
@@ -245,7 +244,6 @@ abstract class MayecoController extends FOSRestController
     protected function debug($object, $exit = true)
     {
         echo Debug::dump($object, 4, true, false);
-        echo $dump;
         if ($exit) {
             die();
         }

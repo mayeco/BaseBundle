@@ -19,7 +19,7 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
  * Class MayecoController
  * @package Mayeco\BaseBundle
  */
-abstract class MayecoController extends FOSRestController
+abstract class Controller extends FOSRestController
 {
 
     /**
@@ -217,7 +217,7 @@ abstract class MayecoController extends FOSRestController
      * @param array $headers
      * @return mixed
      */
-    protected function CreateView($data = null, $template = null, $statusCode = null, array $headers = array())
+    protected function CreateView($template = null, $data = null, $statusCode = null, array $headers = array())
     {
         if (null !== $data) {
             $this->data = $data;

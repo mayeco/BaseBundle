@@ -626,6 +626,13 @@ abstract class Controller extends FOSRestController
         if (null === $this->expression) {
             $this->expression = new ExpressionLanguage();
         }
+
+        try {
+            $this->expression->parse($expression, array_keys($values));
+        } catch (\Exception $e) {
+            return;
+        }
+
         return $this->expression->evaluate($expression, $values);
     }
     

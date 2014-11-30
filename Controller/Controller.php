@@ -5,6 +5,7 @@ namespace Mayeco\BaseBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Form\Form;
+use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 use Doctrine\ORM\Query;
 use Doctrine\Common\Util\Debug;
@@ -25,27 +26,27 @@ abstract class Controller extends FOSRestController
     /**
      * @var array
      */
-    protected $data = array();
-    
-    /**
-     * @var array
-     */
-    protected $parameters = array();
+    private $data = array();
 
     /**
      * @var string
      */
-    protected $template = null;
+    private $template = null;
     
     /**
      * @var string
      */
-    protected $format = null;
+    private $format = null;
     
     /**
      * @var
      */
-    protected $view = null;
+    private $view = null;
+    
+    /**
+     * @var
+     */
+    private $expression;
 
     /**
      * @param Query $query
@@ -193,6 +194,22 @@ abstract class Controller extends FOSRestController
     protected function getTemplate()
     {
         return $this->template;
+    }
+
+    /**
+     * @param $template
+     */
+    protected function setView($view)
+    {
+        $this->view = $view;
+    }
+
+    /**
+     * @return View
+     */
+    protected function getView()
+    {
+        return $this->view;
     }
 
     /**
@@ -599,6 +616,14 @@ abstract class Controller extends FOSRestController
             ->setFilename($filename)
             ->setContentType($content_type)
             ->setBody($body);
+    }
+    
+    public function evaluate($expression, $values = array())
+    {
+        if (null === $this->expression) {
+            $this->expression = new ExpressionLanguage();
+        }
+        return $this->expression->evaluate($expression, $values);
     }
 
 }

@@ -629,13 +629,17 @@ abstract class Controller extends FOSRestController
 
         try {
             $this->expression->parse($expression, array_keys($values));
+            $result = $this->expression->evaluate($expression, $values);
         } catch (\Exception $e) {
-            return;
+            return array("result" => "KO");
         }
 
-        return $this->expression->evaluate($expression, $values);
+        return array(
+            "result" => "OK",
+            "value" => $result
+        );
     }
-    
+
     public function expresion($expression)
     {
         return new Expression($expression);

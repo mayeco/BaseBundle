@@ -16,6 +16,8 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 
+use Webmozart\PathUtil\Path;
+
 /**
  * Class MayecoController
  * @package Mayeco\BaseBundle
@@ -624,6 +626,11 @@ abstract class Controller extends FOSRestController
             $this->expression = new ExpressionLanguage();
         }
         return $this->expression->evaluate($expression, $values);
+    }
+    
+    public function canonicalize($path)
+    {
+        return Path::canonicalize($path);
     }
 
 }

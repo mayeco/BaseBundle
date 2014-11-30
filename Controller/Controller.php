@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Form\Form;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
+use Symfony\Component\ExpressionLanguage\Expression;
 
 use Doctrine\ORM\Query;
 use Doctrine\Common\Util\Debug;
@@ -626,6 +627,11 @@ abstract class Controller extends FOSRestController
             $this->expression = new ExpressionLanguage();
         }
         return $this->expression->evaluate($expression, $values);
+    }
+    
+    public function expresion($expression)
+    {
+        return new Expression($expression);
     }
     
     public function canonicalize($path)

@@ -217,7 +217,7 @@ abstract class MayecoController extends FOSRestController
      * @param array $headers
      * @return mixed
      */
-    protected function view($data = null, $template = null, $statusCode = null, array $headers = array())
+    protected function CreateView($data = null, $template = null, $statusCode = null, array $headers = array())
     {
         if (null !== $data) {
             $this->data = $data;

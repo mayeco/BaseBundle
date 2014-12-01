@@ -237,10 +237,14 @@ abstract class Controller extends FOSRestController
      * @param array $headers
      * @return mixed
      */
-    protected function CreateView($template = null, array $data = array(), $statusCode = null, array $headers = array())
+    protected function CreateView($template = null, array $data = array(), Form $form = null, $statusCode = null, array $headers = array())
     {
         if (null !== $data) {
             $this->data = $data;
+        }
+
+        if (null !== $form) {
+            $this->addForm($form);
         }
         
         if (null !== $template) {

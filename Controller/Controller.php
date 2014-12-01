@@ -239,7 +239,7 @@ abstract class Controller extends FOSRestController
      */
     protected function CreateView($template = null, array $data = array(), Form $form = null, $statusCode = null, array $headers = array())
     {
-        if (null !== $data) {
+        if (!empty($data)) {
             $this->data = $data;
         }
 

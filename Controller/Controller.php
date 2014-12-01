@@ -237,7 +237,7 @@ abstract class Controller extends FOSRestController
      * @param array $headers
      * @return mixed
      */
-    protected function CreateView($template = null, $data = null, $statusCode = null, array $headers = array())
+    protected function CreateView($template = null, array $data = array(), $statusCode = null, array $headers = array())
     {
         if (null !== $data) {
             $this->data = $data;
@@ -347,7 +347,7 @@ abstract class Controller extends FOSRestController
     protected function remove($object, $flush = false, $manager = null)
     {
         if (null === $object) {
-            $this->error('No null update');
+            $this->error('No null delete');
         }
 
         $this->getDoctrineManager($manager)->remove($object);

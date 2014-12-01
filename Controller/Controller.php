@@ -620,17 +620,22 @@ abstract class Controller extends FOSRestController
             ->setContentType($content_type)
             ->setBody($body);
     }
-    
-    public function evaluate($expression, $values = array())
+
+    public function GetExpresion()
     {
         if (null === $this->expression) {
             $this->expression = new ExpressionLanguage();
         }
 
+        return $this->expression;
+    }
+
+    public function evaluate($expression, $values = array())
+    {
         try {
-            $this->expression->parse($expression, array_keys($values));
-            $result = $this->expression->evaluate($expression, $values);
+            $result = $this->GetExpresion()->evaluate($expression, $values);
         } catch (\Exception $e) {
+
             return array("result" => "KO");
         }
 
@@ -640,11 +645,19 @@ abstract class Controller extends FOSRestController
         );
     }
 
-    public function expresion($expression)
+    public function validateExpresion($expression)
     {
-        return new Expression($expression);
+        try {
+            $this->GetExpresion()->parse($expression, array_keys($values));
+            $this->GetExpresion()->evaluate($expression, $values);
+        } catch (\Exception $e) {
+
+            return;
+        }
+
+        return true;
     }
-    
+
     public function canonicalize($path)
     {
         return Path::canonicalize($path);

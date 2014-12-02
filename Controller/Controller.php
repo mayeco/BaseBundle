@@ -625,7 +625,7 @@ abstract class Controller extends FOSRestController
             ->setBody($body);
     }
 
-    public function GetExpresion()
+    public function getExpresion()
     {
         if (null === $this->expression) {
             $this->expression = new ExpressionLanguage();
@@ -637,7 +637,7 @@ abstract class Controller extends FOSRestController
     public function evaluate($expression, $values = array())
     {
         try {
-            $result = $this->GetExpresion()->evaluate($expression, $values);
+            $result = $this->getExpresion()->evaluate($expression, $values);
         } catch (\Exception $e) {
 
             return array("result" => "KO");
@@ -652,8 +652,8 @@ abstract class Controller extends FOSRestController
     public function validateExpresion($expression)
     {
         try {
-            $this->GetExpresion()->parse($expression, array_keys($values));
-            $this->GetExpresion()->evaluate($expression, $values);
+            $this->getExpresion()->parse($expression, array_keys($values));
+            $this->getExpresion()->evaluate($expression, $values);
         } catch (\Exception $e) {
 
             return;

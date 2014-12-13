@@ -24,7 +24,6 @@ use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Symfony\Component\ExpressionLanguage\Expression;
 
 use Doctrine\ORM\Query;
-use Doctrine\Common\Util\Debug;
 
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\FOSRestController;
@@ -298,7 +297,7 @@ abstract class Controller extends FOSRestController
      */
     protected function debug($object, $exit = true)
     {
-        echo Debug::dump($object, 4, true, false);
+        dump($object);
         if ($exit) {
             die();
         }

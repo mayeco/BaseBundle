@@ -252,7 +252,7 @@ abstract class Controller extends FOSRestController
      * @param array $headers
      * @return mixed
      */
-    protected function CreateView($template = null, array $data = array(), Form $form = null, $statusCode = null, array $headers = array())
+    protected function CreateView($template = null, array $data = array(), Form $form = null, $statusCode = 200, array $headers = array())
     {
         if (!empty($data)) {
             $this->data = $data;
@@ -284,7 +284,7 @@ abstract class Controller extends FOSRestController
      * @param null $statusCode
      * @param array $headers
      */
-    protected function CreateJsonView(array $data = array(), $statusCode = null, array $headers = array())
+    protected function CreateJsonView(array $data = array(), $statusCode = 200, array $headers = array())
     {
         if (!empty($data)) {
             $this->data = $data;

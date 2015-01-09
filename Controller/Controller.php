@@ -22,6 +22,7 @@ use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Form\Form;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Symfony\Component\ExpressionLanguage\Expression;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Doctrine\ORM\Query;
 
@@ -276,6 +277,22 @@ abstract class Controller extends FOSRestController
         }
 
         return $this->view;
+    }
+
+    /**
+     * @param null $data
+     * @param null $statusCode
+     * @param array $headers
+     */
+    protected function CreateJsonView(array $data = array(), $statusCode = null, array $headers = array())
+    {
+        if (!empty($data)) {
+            $this->data = $data;
+        }
+
+        $response = new JsonResponse($this->data, $statusCode, $headers);
+
+        return $response;
     }
 
     /**

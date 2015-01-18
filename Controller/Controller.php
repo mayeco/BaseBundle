@@ -91,6 +91,17 @@ abstract class Controller extends FOSRestController
     }
 
     /**
+     * @param string $object
+     * @param int $id
+     * @param null $manager
+     * @return mixed
+     */
+    protected function getDoctrineReference($object, $id, $manager = null)
+    {
+        return $this->getDoctrineManager($manager)->getReference($object, $id);
+    }
+
+    /**
      * @param $object
      * @param null $manager
      * @return mixed

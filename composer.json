@@ -13,12 +13,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.2",
-        "jms/serializer-bundle": "~0.12",
-        "white-october/pagerfanta-bundle": "~1.0",
-        "friendsofsymfony/rest-bundle": "~1.4.0",
-        "webmozart/path-util": "~1.0",
-        "shivas/versioning-bundle": "~1.0"
+        "php": ">=5.3.2"
     },
     "autoload": {
         "psr-4": { "Mayeco\\BaseBundle\\": "" }

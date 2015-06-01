@@ -634,7 +634,7 @@ abstract class Controller extends FOSRestController
      */
     protected function setmemcache($key, $data, $time = 86400)
     {
-        return $this->memcache()->set($key, $datacache, $time);
+        return $this->memcache()->set($key, $data, $time);
     }
 
     /**
@@ -704,7 +704,7 @@ abstract class Controller extends FOSRestController
         return true;
     }
 
-    public function canonicalize($path)
+        public function canonicalize($path)
     {
         return Path::canonicalize($path);
     }

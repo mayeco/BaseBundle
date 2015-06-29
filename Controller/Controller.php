@@ -82,6 +82,41 @@ abstract class Controller extends FOSRestController
     }
 
     /**
+     * Shortcut to return the Doctrine Registry service.
+     *
+     * @return Registry
+     *
+     * @throws \LogicException If DoctrineBundle is not available
+     */
+    public function getDoctrineMongo()
+    {
+        if (!$this->container->has('doctrine_mongodb')) {
+            throw new \LogicException('The DoctrineMongoBundle is not registered in your application.');
+        }
+
+        return $this->container->get('doctrine_mongodb');
+    }
+
+    /**
+     * @param null $manager
+     * @return mixed
+     */
+    protected function getDoctrineMongoManager($manager = null)
+    {
+        return $this->getDoctrineMongo()->getManager($manager);
+    }
+
+    /**
+     * @param $object
+     * @param null $manager
+     * @return mixed
+     */
+    protected function getMongoRepository($object, $manager = null)
+    {
+        return $this->getDoctrineMongoManager($manager)->getRepository(is_object($object) ? get_class($object) : $object);
+    }
+
+    /**
      * @param null $manager
      * @return mixed
      */

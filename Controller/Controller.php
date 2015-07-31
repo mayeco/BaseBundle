@@ -336,9 +336,7 @@ abstract class Controller extends FOSRestController
             $this->data = $data;
         }
 
-        $response = new JsonResponse($this->data, $statusCode, $headers);
-
-        return $response;
+        return new JsonResponse($this->data, $statusCode, $headers);
     }
 
     /**
